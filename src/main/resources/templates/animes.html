@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{master.html}">  
+<head>
+<meta charset="utf-8">
+<title>Directorio</title>
+<link href = " https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css " />
+<style type="text/css">
+.tituloPrinncipal{
+	padding: 0px 0px 20px;
+	
+}
+.titulo {
+ color: #000000;
+ font-weight: 700;
+font-size: 14px;
+}
+h1{
+text-align: center;
+color: #000000;
+ font-weight: 900;;
+}
+img{
+
+     height: 252px; 
+     width: 190px; 
+}
+.año{
+	background-color: rgba(1,188,242,.1);
+    color: #01bcf2;
+
+    padding: 0 15px;
+
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 20px;
+    display: inline-block;
+    vertical-align: top; 
+    text-align: center;
+}
+span{
+
+	text-align: center;
+
+}
+</style>
+</head>
+<body>
+
+   <div layout:fragment="content">
+   		<div class="tituloPrinncipal">
+   			<h1  class="">Directorio</h1>
+   		</div>
+   		
+   		
+	
+	<div class="row">
+	   <div  class="row">
+	    <div class="col-md-2 my-2 Anime" th:each="anime : ${animes}" th:object="${anime}">
+	       <a th:href="@{/animes/{id}(id=*{id})}" >
+	       <img  th:src="@{/assets/{filename}(filename=*{rutaPortada})}" th:alt="*{titulo}"  class="rounded border border-secondary border-4 " />
+	        
+	       </a>
+	       <div class="card-body  text-center">
+	          <h2 class="card-title titulo" th:text="*{titulo}"></h2>
+	          <span th:text="*{#temporals.format(fechaEstreno,'yyyy')}" class="año"></span>
+	          
+	       </div>
+	    </div>
+	    <div class="row mt-5 " th:with="page=${animes}" >
+		     <div class="col-sm-6">
+            <div sd:pagination-summary></div>
+        </div>
+        <div class="col-sm-6">
+            <nav>
+                <ul class="pagination" sd:pagination="full"></ul>
+            </nav>
+        </div>
+    </div>
+  </div> 
+  </div>
+	    
+	</div>
+
+   
+		
+	
+  
+	
+</body>
+</html>
